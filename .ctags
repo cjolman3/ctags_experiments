@@ -1,0 +1,15 @@
+--langdef=Ada
+--langmap=Ada:.adb.ads
+--regex-Ada=/^[ \t]*procedure[ \t]+([a-zA-Z][a-zA-Z0-9_]*)/\1/p,procedure/i
+--regex-Ada=/^[ \t]*function[ \t]+([a-zA-Z][a-zA-Z0-9_]*)/\1/f,function/i
+--regex-Ada=/^[ \t]*package[ \t]+(body[ \t]+)?([a-zA-Z][a-zA-Z0-9_.]*)/\2/k,package/i
+--regex-Ada=/^[ \t]*task[ \t]+(body[ \t]+|type[ \t]+)?([a-zA-Z][a-zA-Z0-9_]*)/\2/t,task/i
+--regex-Ada=/^[ \t]*protected[ \t]+(body[ \t]+|type[ \t]+)?([a-zA-Z][a-zA-Z0-9_]*)/\2/o,protected/i
+--regex-Ada=/^[ \t]*type[ \t]+([a-zA-Z][a-zA-Z0-9_]*)/\1/y,type/i
+--regex-Ada=/^[ \t]*entry[ \t]+([a-zA-Z][a-zA-Z0-9_]*)/\1/e,entry/i
+--regex-Ada=/^[ \t]*([a-zA-Z][a-zA-Z0-9_]*)[ \t]*:[ \t]*(constant|aliased constant)/\1/c,constant/i
+
+# Cross-language: tag the C external name from pragma Import/Export
+# so jumping to the C symbol name in C++ lands on the Ada binding too
+--regex-Ada=/^[ \t]*pragma[ \t]+Import[ \t]*\([ \t]*C[^,]*,[ \t]*[a-zA-Z][a-zA-Z0-9_]*[ \t]*,[ \t]*"([a-zA-Z][a-zA-Z0-9_]*)"/\1/x,cimport/i
+--regex-Ada=/^[ \t]*pragma[ \t]+Export[ \t]*\([ \t]*C[^,]*,[ \t]*[a-zA-Z][a-zA-Z0-9_]*[ \t]*,[ \t]*"([a-zA-Z][a-zA-Z0-9_]*)"/\1/x,cexport/i
